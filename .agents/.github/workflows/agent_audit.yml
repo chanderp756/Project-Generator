@@ -1,0 +1,36 @@
+name: Agent Quality Audit
+
+on: [push, pull_request]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install Python Quality Tools
+        run: pip install -r backend/requirements.txt
+
+      - name: Run Python Audit
+        run: |
+          cd backend
+          ruff check .
+          black --check .
+          mypy .
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Run JS/TS Audit
+        run: |
+          cd frontend
+          npm install
+          npx tsc --noEmit
+          npm run lint

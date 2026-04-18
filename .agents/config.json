@@ -1,0 +1,42 @@
+{
+  "project_generator_version": "1.0.0",
+  "stack": {
+    "frontend": {
+      "framework": "React (Vite)",
+      "language": "JS/JSX",
+      "styling": "Tailwind CSS"
+    },
+    "backend": {
+      "language": "Python 3.12+",
+      "framework": "FastAPI",
+      "linting": "Ruff",
+      "formatting": "Black"
+    }
+  },
+  "quality_gate": {
+    "scripts": {
+      "backend_install": "pip install -r backend/requirements.txt",
+      "backend_lint": "ruff check backend",
+      "backend_format_check": "black --check backend",
+      "backend_type_check": "mypy backend",
+      "frontend_install": "cd frontend && npm install",
+      "frontend_lint": "cd frontend && npm run lint",
+      "frontend_type_check": "cd frontend && npx tsc --noEmit"
+    },
+    "entrypoint": ".agents/scripts/run_quality_gate.py"
+  },
+  "workflow": {
+    "contract_first": true,
+    "skill_dir": ".agents/skills/",
+    "contract_dir": ".agents/contracts/",
+    "templates_dir": ".agents/templates/"
+  },
+  "paths": {
+    "contracts": ".agents/contracts/",
+    "skills": ".agents/skills/",
+    "logs": {
+      "audit": "audit_log.md",
+      "issue": "issue_log.md"
+    }
+  }
+}
