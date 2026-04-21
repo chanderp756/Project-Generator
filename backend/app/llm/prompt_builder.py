@@ -169,3 +169,4 @@ def _get_dependencies(config: ProjectConfig) -> list[str]:
         pass  # LLM will handle based on instructions
     # Add more backends as needed
     return deps
+            
