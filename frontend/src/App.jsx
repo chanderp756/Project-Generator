@@ -9,6 +9,7 @@ import { DEFAULT_CONFIG, STEPS } from './config/defaults';
 import { generateProject, downloadBlob } from './services/api';
 
 import StepIndicator from './components/StepIndicator';
+import ThemeToggle from './components/ThemeToggle';
 import StepBasics from './steps/StepBasics';
 import StepTechStack from './steps/StepTechStack';
 import StepAuth from './steps/StepAuth';
@@ -106,6 +107,7 @@ export default function App() {
         <p className="wizard-subtitle">
           Configure &amp; generate a production-ready scaffold in seconds
         </p>
+        <ThemeToggle />
       </header>
 
       {/* ── WIZARD phase ────────────────────────────────────────── */}
